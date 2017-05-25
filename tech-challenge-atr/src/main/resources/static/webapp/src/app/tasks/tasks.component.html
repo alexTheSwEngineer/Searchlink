@@ -1,0 +1,112 @@
+<h1>
+  The awesome list of endless tasks:
+</h1>
+<table class="table">
+  <thead class="thead-inverse">
+  <tr>
+    <th>
+      uuid
+    </th>
+    <th>
+      title
+    </th>
+    <th>
+      priority
+    </th>
+    <th>
+      dueDate
+    </th>
+    <th>
+      details
+    </th>
+    <th>
+      process
+    </th>
+
+    <th>
+      postpone
+    </th>
+  </tr>
+  </thead>
+  <tr *ngFor="let task of tasks">
+    <td>
+      {{task.uuid}}
+    </td>
+    <td>
+      {{task.title}}
+    </td>
+    <td>
+      {{task.priority}}
+    </td>
+    <td>
+      {{toISOstring(task.dueDate)}}
+    </td>
+
+    <td>
+      <button (click)="details(task.id)">details</button>
+    </td>
+    <td>
+      <button (click)="process(task)"> process</button>
+    </td>
+    <td>
+      <button (click)="postpone(task.id)">postpone</button>
+    </td>
+
+  </tr>
+</table>
+
+
+<h1>Tutorial and spec's</h1>
+<p>I took the all the freedom that was given to me with interpreting the requirements, hence here are some
+  specifications
+  in order for a better user experience to be achieved
+</p>
+<h3>The task list</h3>
+<p id="p1">
+  This is a view of all pending tasks. By clicking process you are sending them to a process queue. After the processing
+  is finished,
+  a push notification is sent to all subscribed clients so they can remove the processed task and prevent a stale view.
+  You can try this with multiple tabs/browser windows.
+</p>
+<h3>The scheduler</h3>
+<p>
+
+  While you are enjoying this beautifull CSS marvel, a scheduler is creating tasks in the background. New tasks created
+  by the scheduler
+  will be pushed on top of this list view. If you don't want to wait for that to happen, you can force a random task
+  creation via this
+  <a href="http://localhost:8080/tasks/debug/createRandom" target="_blank">link</a>. It works even when called from
+  another tab
+</p>
+<h3>The details button</h3>
+<p>
+  There is far more in a task then it meets the eye on this screen. Click the details button to go to a more detailed
+  view of a task that includes editing options as well as all the fields from the requirements
+  (Status,Priority,CreatedAt,UpdatedAt,UUID,DueDate....etc)
+</p>
+<h3>The process button</h3>
+<p>
+  Clicking on process will send the task to a queue that will eventually process it. Once it has been processed it will
+  be removed from
+  all active clients via a push notification. Feel free to try this from diferent browsers/tabs.
+</p>
+<h3>The postpone button</h3>
+<p>
+
+  Clicking postpone will send you to a screen for choosing a postpone date. Back in <a href="=#p1"> the first
+  paragraph</a>
+  I gently mislead you. The list of awesomness doesn't show all the tasks. It ONLY shows pending tasks which <strong>have
+  not been postponed</strong> to a date
+  after now.
+  A scheduler takes care of all clients getting a push notification when such postponed task becomes due.
+  If you are interested in seeing all the tasks in a plain JSON list as they're persisted visit<a
+  href="http://localhost:8080/tasks/debug/all" target="_blank">this</a>
+</p>
+
+<p>
+  <button (click)="debug()">print</button>
+  This button prints the array of task JSONs in the console. I would, however stay out of the console view.
+  <br/>
+</p>
+
+

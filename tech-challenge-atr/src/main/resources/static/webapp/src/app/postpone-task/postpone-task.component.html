@@ -1,0 +1,22 @@
+<p>
+  postpone task <strong>{{task.title}}</strong> originally dueTo: <strong>{{toISOstring(task.dueDate)}}</strong>
+</p>
+<br/>
+
+<div class="form-inline">
+  <div class="form-group">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="task.postponedTo" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-addon" (click)="d.toggle()">
+        <span>open datepicker</span>
+      </div>
+    </div>
+  </div>
+</div>
+<button [disabled]="validate(task).length" (click)="postpone()">update</button>
+<p class="alert alert-danger" *ngFor="let error of validate(task)">
+  {{error}}
+</p>
+
+

@@ -1,0 +1,116 @@
+<h3>Non mutable properties:</h3>
+<table class="table">
+  <thead class="thead-inverse">
+  <tr>
+    <th>
+      id
+    </th>
+    <th>
+      uuid
+    </th>
+    <th>
+      created on
+    </th>
+    <th>
+      last updated on
+    </th>
+    <th>
+      update version
+    </th>
+    <th>
+      postponed to
+    </th>
+    <th>
+      resolvedAt
+    </th>
+    <th>
+      status
+    </th>
+
+  </tr>
+  </thead>
+  <tr>
+    <td>
+      {{task.id}}
+    </td>
+    <td>
+      {{task.uuid}}
+    </td>
+
+    <td>
+      {{toISOstring(task.createdAt)}}
+    </td>
+    <td>
+      {{toISOstring(task.updatedAt)}}
+    </td>
+    <td>
+      {{task.version}}
+    </td>
+    <td>
+      {{toISOstring(task.postponedTo)}}
+    </td>
+    <td>
+      {{toISOstring(task.resolvedAt)}}
+    </td>
+    <td>
+      {{task.status}}
+    </td>
+
+  </tr>
+</table>
+
+<h3>Mutable properties:</h3>
+<table class="table">
+  <thead class="thead-inverse">
+  <tr>
+    <th>
+      title
+    </th>
+    <th>
+      description
+    </th>
+
+    <th>
+      priority
+    </th>
+    <th>
+      due Date
+    </th>
+
+  </tr>
+  </thead>
+  <tr>
+    <td>
+      <input [(ngModel)]="task.title" type="text"/>
+    </td>
+    <td>
+      <textarea [(ngModel)]="task.description"></textarea>
+
+    </td>
+
+    <td>
+      <select [(ngModel)]="task.priority">
+        <option *ngFor="let priority of  priorities" [value]="priority">
+          {{priority}}
+        </option>
+      </select>
+    </td>
+    <td>
+      <div class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="task.dueDate" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-addon" (click)="d.toggle()">
+              <span>open datepicker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+<button [disabled]="validate(task).length" (click)="save()">update</button>
+<p class="alert alert-danger" *ngFor="let error of validate(task)">
+  {{error}}
+</p>

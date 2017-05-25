@@ -1,6 +1,6 @@
 # Searchlink challenge
 
-To run the application, navigate to the */executable* folder and run any of the .jar files.
+To run the application, download this [*JARs*](https://www.dropbox.com/sh/q7i07wq1bqdbyy9/AACjlL4rtWbeLIBNA9uuzFgea?dl=0) and run any of them.
 It will be very helpful if port 8080 is available and java is installed and java path variables are set as well.
 
 `
