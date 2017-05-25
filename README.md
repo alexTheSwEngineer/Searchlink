@@ -11,14 +11,14 @@ It will be very helpful if port 8080 is available and java is installed and java
 
 If you decide to go with *app-postgre.jar* a postgre db called *tasks* is going to be needed:
 
-`
+
 	db properties: 
 	url=jdbc:postgresql://localhost:5432/tasks 
 	username=postgres 
 	password=postgres      
 	
-	java -jar app-postgre.jar 
-`
+`	java -jar app-postgre.jar `
+
 
 ### Running the h2 version:
 
