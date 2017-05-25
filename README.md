@@ -4,7 +4,7 @@ To run the application, navigate to the */executable* folder and run any of the 
 It will be very helpful if port 8080 is available and java is installed and java path variables are set as well.
 
 `
-	java -jar app-<h2/postgre>.jar
+	java -jar app-<h2/postgre>.jar >log.log &
 `
 
 ### Running the postgre version:
@@ -17,14 +17,14 @@ If you decide to go with *app-postgre.jar* a postgre db called *tasks* is going 
 	username=postgres 
 	password=postgres      
 	
-`	java -jar app-postgre.jar `
+`	java -jar app-postgre.jar >log.log &`
 
 
 ### Running the h2 version:
 
 The h2 version uses an in-memory h2 db so it is sufficient to just run:
 
-`	java -jar app-h2.jar `
+`	java -jar app-h2.jar >log.log &`
 
 # Testing tha application
 
